@@ -5,6 +5,8 @@ var bookstackTokenId = Environment.GetEnvironmentVariable("BOOKSTACK_TOKENID");
 var bookstackTokenSecret = Environment.GetEnvironmentVariable("BOOKSTACK_TOKENSECRET");
 var bookstackUrl = Environment.GetEnvironmentVariable("BOOKSTACK_URL");
 
+var gistId = Environment.GetEnvironmentVariable("GIST_ID");
+
 var bookService = new BookstackService(bookstackUrl, bookstackTokenId, bookstackTokenSecret);
 foreach (var f in (await bookService.GetShelves()).ToList())
 {
@@ -12,5 +14,8 @@ foreach (var f in (await bookService.GetShelves()).ToList())
     (await bookService.GetBooks(f.id)).ToList().ForEach(fb => Console.WriteLine(fb));
 }
 
-
+var gistService = new GistService();
+var data = await gistService.GetGistData(gistId);
+Console.WriteLine(data);
+data.files.ToList().ForEach(f => Console.WriteLine(f.Value));
 
