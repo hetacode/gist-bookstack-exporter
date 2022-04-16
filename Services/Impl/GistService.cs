@@ -1,7 +1,7 @@
 using System.Text.Json;
 using GBE.Models.Gist;
 
-namespace GBE.Services;
+namespace GBE.Services.Impl;
 
 public class GistService : IGistService
 {
